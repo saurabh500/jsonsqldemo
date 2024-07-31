@@ -38,6 +38,30 @@ class Program
         }
     }
 
+    static void InsertDataUsingStoredProc(SqlConnection connection)
+    {
+        Console.WriteLine("" +
+            "Read the data from the JSON files and write to server." +
+            "Shows the datatype TDS = 244 supported on client side for " +
+            "JSON parameters. ");
+
+        string jsonData = "[\r\n    {\r\n        \"name\": \"Dave\",\r\n        \"skills\": [ \"Python\" ]\r\n    },\r\n    {\r\n        \"name\": \"Ron\",\r\n        \"surname\": \"Tianchen\"\r\n    }\r\n]";
+
+        using (SqlCommand command = connection.CreateCommand())
+        {
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "jsonsp";
+            // Add the JSON data parameter
+            command.Parameters.Add(new SqlParameter("@jsonData", SqlDbTypeExtensions.Json)
+            {
+                Value = jsonData
+            });
+
+            // Open the connection and execute the command
+            command.ExecuteNonQuery();
+        }
+    }
+
     static void ReadData(SqlConnection connection)
     {
         Console.WriteLine("" +
