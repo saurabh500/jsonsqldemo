@@ -98,6 +98,8 @@ class Program
         {
             connection.Open();
             InsertData(connection);
+            InsertDataUsingStoredProc(connection);
+
             ReadData(connection);
         }   
     }
