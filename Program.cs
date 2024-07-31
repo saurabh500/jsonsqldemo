@@ -8,7 +8,6 @@ using Microsoft.Data;
 
 class Program
 {
-    private static string inputJsonFile = "C:\\work\\temp\\sample.json";
 
     static string GetConnectionString(string[] args)
     {
@@ -23,12 +22,8 @@ class Program
             "Read the data from the JSON files and write to server." +
             "Shows the datatype TDS = 244 supported on client side for " +
             "JSON parameters. ");
-        string jsonData = File.ReadAllText(inputJsonFile);
 
-        Console.WriteLine("Data to be sent to the server ");
-
-        //string jsonData = "[\r\n    {\r\n        \"name\": \"Dave\",\r\n        \"skills\": [ \"Python\" ]\r\n    },\r\n    {\r\n        \"name\": \"Ron\",\r\n        \"surname\": \"Tianchen\"\r\n    }\r\n]";
-        Console.WriteLine(jsonData);
+        string jsonData = "[\r\n    {\r\n        \"name\": \"Dave\",\r\n        \"skills\": [ \"Python\" ]\r\n    },\r\n    {\r\n        \"name\": \"Ron\",\r\n        \"surname\": \"Tianchen\"\r\n    }\r\n]";
 
         using (SqlCommand command = connection.CreateCommand())
         {
